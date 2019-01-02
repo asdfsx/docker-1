@@ -23,6 +23,12 @@ build-slim:
 build-jdk11:
 	docker build --file Dockerfile-jdk11 .
 
+build-nvidia:
+	docker build --file Dockerfile-nvidia-docker-base -t asdfsx/jenkins:nvidia-base .
+	docker build --file Dockerfile-nvidia -t asdfsx/jenkins:nvidia .
+	docker build --file Dockerfile-nvidia-slave-base -t asdfsx/jenkins:nvidia-slave-base .
+	docker build --file Dockerfile-nvidia-slave-jnlp -t asdfsx/jenkins:nvidia-slave-jnlp .
+
 bats:
 	# Latest tag is unfortunately 0.4.0 which is quite older than the latest master tip.
 	# So we clone and reset to this well known current sha:
